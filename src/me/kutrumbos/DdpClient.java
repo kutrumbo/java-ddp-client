@@ -143,7 +143,7 @@ public class DdpClient extends Observable {
 	 * @param method - name of corresponding Meteor method
 	 * @param args - arguments to be passed to the Meteor method
 	 */
-	public void call(String method, String[] params){
+	public void call(String method, Object[] params){
 		Map<DdpMessageField,Object> callMsg = new HashMap<DdpMessageField,Object>();
 		callMsg.put(DdpMessageField.MSG, "method");
 		callMsg.put(DdpMessageField.METHOD, method);
@@ -161,7 +161,7 @@ public class DdpClient extends Observable {
 	 * @param name - name of the corresponding Meteor subscription
 	 * @param params - arguments corresponding to the Meteor subscription
 	 */
-	public void subscribe(String name, String[] params) {
+	public void subscribe(String name, Object[] params) {
 		Map<DdpMessageField,Object> subMsg = new HashMap<DdpMessageField,Object>();
 		subMsg.put(DdpMessageField.MSG, "sub");
 		subMsg.put(DdpMessageField.NAME, name);

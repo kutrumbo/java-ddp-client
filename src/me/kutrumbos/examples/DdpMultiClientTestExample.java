@@ -1,7 +1,6 @@
 package me.kutrumbos.examples;
 
 import java.net.URISyntaxException;
-import java.util.Date;
 import java.util.Observer;
 
 import me.kutrumbos.DdpClient;
@@ -12,7 +11,7 @@ import me.kutrumbos.DdpClient;
  * @author peterkutrumbos
  *
  */
-public class DdpClientExample {
+public class DdpMultiClientTestExample {
 
 	public static void main(String[] args) {
 		
@@ -34,25 +33,17 @@ public class DdpClientExample {
 			// make connection to Meteor server
 			ddp.connect();
 			
-			while(true) {
-				try {
-					Thread.sleep(5000);
-
-					System.out.println("calling remote method...");
-					
-					Object[] methodArgs = new Object[1];
-					methodArgs[0] = new Date().toString();
-					ddp.call("update_time", methodArgs);
-
-				} catch (InterruptedException e) {
-					
-					e.printStackTrace();
-				}
-			}
+			Thread.sleep(1000);
+			
+			ddp.subscribe("allPositions", new Object[]{});
 					
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
-		}			
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
 	}
 
 	

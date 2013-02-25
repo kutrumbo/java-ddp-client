@@ -23,12 +23,15 @@ public class DdpClient extends Observable {
 	private final WebSocketClient wsClient;
 	private final Gson gson = new Gson();
 	
+	private final static String DDP_PROTOCOL_VERSION = "pre1";
+	
 	/**
 	 * Field names supported in the DDP protocol
 	 *
 	 */
 	public enum DdpMessageField {
-		MSG("msg"), ID("id"), METHOD("method"), PARAMS("params"), NAME("name"), SERVER_ID("server_id");
+		MSG("msg"), ID("id"), METHOD("method"), PARAMS("params"), NAME("name"), SERVER_ID("server_id"),
+		SESSION("session"), VERSION("version"), SUPPORT("support");
 		
 		private String fieldId;
 		
@@ -86,6 +89,8 @@ public class DdpClient extends Observable {
 		System.out.println("WebSocket connection opened");
 		Map<DdpMessageField,Object> connectMsg = new HashMap<DdpMessageField,Object>();
 		connectMsg.put(DdpMessageField.MSG, "connect");
+		connectMsg.put(DdpMessageField.VERSION, DDP_PROTOCOL_VERSION);
+		connectMsg.put(DdpMessageField.SUPPORT, new String[]{DDP_PROTOCOL_VERSION});
 		send(connectMsg);
 	}
 	

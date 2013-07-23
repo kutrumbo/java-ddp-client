@@ -8,7 +8,7 @@ Based on the node-js project by Alan Sikora, built on the java WebSocket of Nath
 How to Use
 ==========
 
-Download the entire source as a java project (will be adding jar shortly)
+Download the entire source as a java project or just add the jar file as a dependency to your project
 
 Example
 =======
